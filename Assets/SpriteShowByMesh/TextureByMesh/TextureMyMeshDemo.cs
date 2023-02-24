@@ -78,7 +78,8 @@ public class TextureMyMeshDemo : MonoBehaviour
         for (int i = 0; i < assets.Length; i++)
         {
             var asset = Resources.Load<TextAsset>($"Json/{assets[i]}");
-            Jsons[i] = JsonUtility.FromJson<AtzJson>(asset.text);
+            var jsons = LitJson.JsonMapper.ToObject<List<AtzJson>>(asset.text);
+            Jsons[i] = jsons[0];
         }
 
         TimeWatch.Start();
